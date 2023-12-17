@@ -56,6 +56,26 @@ if (isset($_GET['logout'])) {
           }
         });
       });
+
+      // add button ditekan
+      $(".btn-primary").click(function() {
+        // get id_note
+        var id_note = $(this).attr("id").split('_')[1];
+        var username = $('#user_'+id_note).val();
+        // ajax
+        $.ajax({
+          url: "./process/add_user_access.php",
+          type: "POST",
+          data: {
+            id_note: id_note,
+            username: username
+          },
+          success: function(result) {
+            console.log(result);
+            alert(result.message);
+          }
+        })
+      })
     });
   </script>
 </head>
@@ -117,6 +137,8 @@ if (isset($_GET['logout'])) {
               echo '<textarea class="form-control" style = "height: 200px;"
                id="' . $row['id_note'] . '">' . $row['content'] . '</textarea><br>';
               echo '<a href="./process/delete_catatan.php?delete=' . $row['id_note'] . '" class="btn btn-danger">Delete</a>';
+              echo '<input type="text" id="user_'.$row['id_note'].'" name="id_note" placeholder="username" class="foem-control"/>';
+              echo '<button id="add_'.$row['id_note'].'" class="btn btn-primary">add</button>';
               echo '</div>';
               echo '</div>';
               echo '</div>';
