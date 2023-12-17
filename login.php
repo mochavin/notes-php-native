@@ -32,9 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Invalid username/password
-    echo "Invalid username/password";
+    $invalid = "Invalid username/password";
   }
-  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -55,6 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card">
           <div class="card-body">
             <h1 class="text-center mb-4">Login</h1>
+            <!-- error -->
+            <?php if (isset($invalid)) : ?>
+              <div class="alert alert-danger">
+                <?php echo $invalid; ?>
+              </div>
+            <?php endif; ?>
             <form method="POST" action="">
               <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>

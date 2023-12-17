@@ -1,5 +1,5 @@
 <?php
-require_once('connect.php');
+require_once('../connect.php');
 session_start();
 if (!isset($_SESSION['username'])) {
   header("Location: login.php");
@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SESSION['role'] == 'user') {
-  header("Location: index.php");
+  header("Location: ../index.php");
   exit;
 }
 
@@ -25,6 +25,6 @@ if (isset($_GET['delete'])) {
   $result = $mysqli->query($sql);
 
   // redirect to admin_page.php
-  header("Location: admin_page.php");
+  header("Location: ../admin_page.php");
   exit;
 }

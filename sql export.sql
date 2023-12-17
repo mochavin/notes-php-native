@@ -27,9 +27,9 @@ CREATE TABLE IF NOT EXISTS `note` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id_note`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table fp_pweb.note: ~10 rows (approximately)
+-- Dumping data for table fp_pweb.note: ~14 rows (approximately)
 INSERT INTO `note` (`id_note`, `title`, `content`, `created_at`, `updated_at`) VALUES
 	(1, 'kesatu', 'wes keren', '2023-12-16 13:25:40', '2023-12-16 14:44:21'),
 	(2, 'kedua', 'bukan punya user id 12', '2023-12-16 13:31:11', '2023-12-16 13:31:13'),
@@ -41,7 +41,10 @@ INSERT INTO `note` (`id_note`, `title`, `content`, `created_at`, `updated_at`) V
 	(10, '', '', '2023-12-16 13:40:58', '2023-12-16 13:40:58'),
 	(11, 'content ke tiga ', 'wow ini kedua sudah update', '2023-12-16 13:42:06', '2023-12-16 14:40:19'),
 	(12, 'ini note admin', 'admin admin admin admin', '2023-12-16 13:56:55', '2023-12-16 13:56:55'),
-	(13, 'judul selanjutnya', 'ini kontennya judul selanjutnya\r\n', '2023-12-16 14:46:13', '2023-12-16 14:46:13');
+	(13, 'judul selanjutnya', 'ini kontennya judul selanjutnya\nwaduhaa\nkeren\nwaduh', '2023-12-16 14:46:13', '2023-12-17 10:53:34'),
+	(15, 'test kesekian kali', 'wkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\n', '2023-12-17 11:02:06', '2023-12-17 11:02:06'),
+	(16, 'test kesekian kali', 'wkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\n', '2023-12-17 11:02:33', '2023-12-17 11:02:33'),
+	(17, 'test kesekian kali', 'wkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\nwkwkwk\r\n', '2023-12-17 11:02:45', '2023-12-17 11:02:45');
 
 -- Dumping structure for table fp_pweb.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -53,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table fp_pweb.user: ~2 rows (approximately)
+-- Dumping data for table fp_pweb.user: ~3 rows (approximately)
 INSERT INTO `user` (`id_user`, `username`, `password`, `role`) VALUES
 	(11, 'admin', 'admin', 'admin'),
 	(12, 'user', 'user', 'user'),
@@ -69,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `user_note` (
   CONSTRAINT `user_note_ibfk_2` FOREIGN KEY (`id_note`) REFERENCES `note` (`id_note`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table fp_pweb.user_note: ~1 rows (approximately)
+-- Dumping data for table fp_pweb.user_note: ~4 rows (approximately)
 INSERT INTO `user_note` (`id_user`, `id_note`) VALUES
 	(12, 1),
 	(12, 11),

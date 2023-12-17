@@ -120,6 +120,7 @@ if (isset($_GET['search'])) {
       <thead>
         <tr>
           <th>Username</th>
+          <th>Password</th>
           <th>Role</th>
           <th>Action</th>
         </tr>
@@ -133,6 +134,8 @@ if (isset($_GET['search'])) {
             echo "<tr>";
             // username
             echo "<td>" . $row['username'] . "</td>";
+            // password
+            echo "<td>" . $row['password'] . "</td>";
             // role
             echo "<td" . ($row['role'] == 'admin' ? ' style="font-weight: bold; color: blue;"' : '') . ">" . $row['role'] . "</td>";
             // add row for delete
