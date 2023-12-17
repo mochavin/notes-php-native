@@ -105,7 +105,7 @@ if (isset($_GET['logout'])) {
             while ($row = $result->fetch_assoc()) {
               echo '<div class="accordion-item">';
               echo '<h5 class="my-0 accordion-header" id="heading' . $row['id_note'] . '">';
-              echo '<button class="accordion-button" data-toggle="collapse" data-target="#collapse' . $row['id_note'] . '" aria-expanded="true" aria-controls="collapse' . $row['id_note'] . '">';
+              echo '<button class="accordion-button collapsed" data-toggle="collapse" data-target="#collapse' . $row['id_note'] . '" aria-expanded="true" aria-controls="collapse' . $row['id_note'] . '">';
               echo $row['title'];
               echo '</button>';
               echo '</h5>';
