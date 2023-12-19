@@ -12,6 +12,7 @@
   <title>Register</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/log_reg.css">
   <style>
     body {
       background-color: #f8f9fa;
@@ -32,13 +33,15 @@
     }
   </style>
 </head>
-<body class="bg-light">
+<body class="light">
   <div class="container mt-5">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center ">
       <div class="col-md-6">
-        <div class="card">
+        <div class="card login-page">
           <div class="card-body">
-            <h1 class="text-center mb-4">Register</h1>
+            <h1 class="text-center mb-4">KeepNotes</h1>
+            <img src="./assets/images/torch.png" alt="" class="brand-logo mx-auto d-block">
+            <h3 class="mb-4 text-light">Register</h3>
             <form method="POST" action="./process/register_process.php">
               <!-- error -->
               <?php if (isset($error)): ?>
@@ -57,7 +60,7 @@
                 <input type="password" class="form-control" id="password" name="password" required>
               </div>
 
-              <button type="submit" class="btn btn-primary">Register</button>
+              <button type="submit" class="btn btn-light">Register</button>
             </form>
             <!-- login link -->
             <p class="mt-3">Sudah punya akun? <a href="login.php">Login</a></p>

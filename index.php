@@ -29,75 +29,67 @@ if (isset($_GET['logout'])) {
   <title>Home</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/note.css">
   <!-- Bootstrap JS dependencies -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script>
-    // ajax untuk mengedit catatan
-    $(document).ready(function() {
-      // ketika focus out dari textarea
-      $("textarea").focusout(function() {
-        // get id_note
-        var id_note = $(this).attr("id");
-        // get content
-        var content = $(this).val();
-        // ajax
-        $.ajax({
-          url: "./process/edit_catatan.php",
-          type: "POST",
-          data: {
-            id_note: id_note,
-            content: content
-          },
-          success: function(result) {
-            alert("Note updated!");
-          }
-        });
+  // ajax untuk mengedit catatan
+  $(document).ready(function() {
+    // ketika edit button ditekan
+    $(".edit").click(function() {
+      // get id_note
+      var id_note = $(this).attr("id");
+      $.ajax({
+        url: "./process/edit_catatan.php",
+        type: "POST", // <-- Add a comma here
+        data: {
+          id_note: id_note
+        }, // <-- Add a comma here
+        success: function(result) {
+          // Process the result if needed
+        }
       });
-
-      // add button ditekan
-      $(".btn-primary").click(function() {
-        // get id_note
-        var id_note = $(this).attr("id").split('_')[1];
-        var username = $('#user_'+id_note).val();
-        // ajax
-        $.ajax({
-          url: "./process/add_user_access.php",
-          type: "POST",
-          data: {
-            id_note: id_note,
-            username: username
-          },
-          success: function(result) {
-            console.log(result);
-            alert(result.message);
-          }
-        })
-      })
+      // redirect to edit_catatan.php with the id_note parameter
+      window.location.href = "./process/edit_catatan.php?id_note=" + id_note;
     });
-  </script>
+
+    // add button ditekan
+    $(".btn-primary").click(function() {
+      // get id_note
+      var id_note = $(this).attr("id").split('_')[1];
+      var username = $('#user_' + id_note).val();
+      // ajax
+      $.ajax({
+        url: "./process/add_user_access.php",
+        type: "POST",
+        data: {
+          id_note: id_note,
+          username: username
+        },
+        success: function(result) {
+          console.log(result);
+          alert(result.message);
+        }
+      });
+    });
+  });
+</script>
 </head>
 
-<body class="bg-light">
-
-  <div class="container-fluid">
+<body class='light'>
+  <div class="container-fluid user-div">
+  <?php include 'header.php'; ?>
     <div class="row">
       <!-- Sidebar -->
-      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block  sidebar">
         <div class="position-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <h1 class="mb-4">Home</h1>
-            </li>
-            <li class="nav-item">
-              <p class="nav-link">Welcome, <?php echo $_SESSION['username']; ?></p>
-            </li>
-            <li class="nav-item">
-              <a href="?logout" class="btn btn-danger">Logout</a>
-            </li>
-          </ul>
+
+              <h2>Welcome, <?php echo $_SESSION['username']; ?></h2>
+          
         </div>
       </nav>
 
@@ -119,31 +111,32 @@ if (isset($_GET['logout'])) {
           // if the query returned any rows
           if ($result->num_rows > 0) {
             // Add Bootstrap accordion wrapper
-            echo '<div id="accordion" class=accordion>';
+            echo "<div class='container'>";
 
             // loop through each row
             while ($row = $result->fetch_assoc()) {
-              echo '<div class="accordion-item">';
-              echo '<h5 class="my-0 accordion-header" id="heading' . $row['id_note'] . '">';
-              echo '<button class="accordion-button collapsed" data-toggle="collapse" data-target="#collapse' . $row['id_note'] . '" aria-expanded="true" aria-controls="collapse' . $row['id_note'] . '">';
-              echo $row['title'];
-              echo '</button>';
-              echo '</h5>';
+              echo '<div class="note">';
+              echo "<h1>" . $row['title'] . "</h1>";
+              echo "<p class='note-content'>". $row['content']."</p>";
+              echo "<hr />";
+              echo "<p class='text-muted datetext'>Created at: " . date("j F Y H:i", strtotime($row['created_at'])) . "</p>";
+              echo "<p class='text-muted datetext'>Last updated at: " . date("j F Y H:i", strtotime($row['updated_at'])) . "</p>";
+              echo '<a href="./process/delete_catatan.php?delete=' . $row['id_note'] . '" class="btn">Delete</a>';
+              echo '<a href="./process/edit_catatan.php?id_note=' . $row['id_note'] . '" class="btn edit">Edit</a>';
 
-              echo '<div id="collapse' . $row['id_note'] . '" class="collapse" aria-labelledby="heading' . $row['id_note'] . '" data-parent="#accordion">';
-              echo '<div class="accordion-body">';
-              echo "<p class='fw-bold'>Created at: " . date("j F Y H:i", strtotime($row['created_at'])) . "</p>";
-              echo "Last updated at: " . date("j F Y H:i", strtotime($row['updated_at'])) . "</p>";
-              echo '<textarea class="form-control" style = "height: 200px;"
-               id="' . $row['id_note'] . '">' . $row['content'] . '</textarea><br>';
-              echo '<a href="./process/delete_catatan.php?delete=' . $row['id_note'] . '" class="btn btn-danger">Delete</a>';
-              echo '<input type="text" id="user_'.$row['id_note'].'" name="id_note" placeholder="username" class="foem-control"/>';
-              echo '<button id="add_'.$row['id_note'].'" class="btn btn-primary">add</button>';
               echo '</div>';
-              echo '</div>';
-              echo '</div>';
+              
+              
+              // echo '<textarea class="form-control" style = "height: 200px;"
+              //  id="' . $row['id_note'] . '">' . $row['content'] . '</textarea><br>';
+              
+              // echo '<input type="text" id="user_'.$row['id_note'].'" name="id_note" placeholder="username" class="foem-control"/>';
 
             }
+           echo '<a href="./process/add_catatan.php" class="d-flex align-items-center justify-content-center">
+           <img src="./assets/images/add.png" alt="" class="center-vertically">
+       </a>
+       ';
 
             // Close Bootstrap accordion wrapper
             echo '</div>';
@@ -152,14 +145,12 @@ if (isset($_GET['logout'])) {
 
           ?>
 
-          <!-- add note -->
-          <?php
-          ?>
+
           <!-- button to add note -->
-          <a href="./process/add_catatan.php" class="btn btn-primary my-3
-          ">Add Catatan</a>
+
         </div>
       </main>
+      <img src="" alt="">
     </div>
   </div>
 

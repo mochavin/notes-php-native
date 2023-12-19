@@ -1,0 +1,48 @@
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: #f5ba13;
+    margin: auto -16px;
+    padding: 16px 32px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  header h1 {
+    color: #fff;
+    font-family: "McLaren", cursive;
+    font-weight: 200;
+    
+  }
+
+
+  html {
+    font-family: "Montserrat", sans-serif;
+  }
+  .light {
+    background: #eee;
+    padding: 0 16px;
+  }
+  
+  .admin-title{
+    margin-top: 100px;
+  }
+  .brand-logo{
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+  }
+  .user-div{
+    margin-top: 100px;
+  }
+
+header a {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+}
+
+.save-button {
+  position: fixed !important;
+  bottom: 10px !important;
+  right: 123px !important;
+}
