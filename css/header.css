@@ -1,48 +1,64 @@
+
 header {
-    display: flex;
-    flex-direction: row;
-    background-color: #f5ba13;
-    margin: auto -16px;
-    padding: 16px 32px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-  }
-  
-  header h1 {
-    color: #fff;
-    font-family: "McLaren", cursive;
-    font-weight: 200;
-    
-  }
+  display: flex;
+  flex-direction: row;
+  background-color: #f5ba13;
+  padding-top: 12px;
+  padding-left: 8px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  color: #fff;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+  margin-top: 4px;
+}
 
 
-  html {
-    font-family: "Montserrat", sans-serif;
-  }
-  .light {
-    background: #eee;
-    padding: 0 16px;
-  }
-  
-  .admin-title{
-    margin-top: 100px;
-  }
-  .brand-logo{
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-  }
-  .user-div{
-    margin-top: 100px;
-  }
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+.light {
+  background: #eee;
+  padding-top: 100px;
+  padding-bottom: 100px
+}
+
+.brand-logo {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  margin-top: 2px;
+}
 
 header a {
   position: absolute;
-  top: 25px;
-  right: 40px;
+  top: 25%;
+  right: 32px;
 }
 
 .save-button {
   position: fixed !important;
   bottom: 10px !important;
-  right: 123px !important;
+  right: 64px !important;
+}
+
+@media (min-width: 768px) {
+  header {
+    padding: 4px 64px;
+  }
+
+  header a {
+    right: 64px;
+  }
+
+  header a {
+    top: 25%;
+  }
+
+  .brand-logo {
+    margin-top: 8px;
+  }
 }

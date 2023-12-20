@@ -63,26 +63,25 @@ if (isset($_GET['add'])) {
 </head>
 
 <body class="light">
-<?php include '../header.php'; ?>
+  <?php include '../header.php'; ?>
   <div class="container mt-5">
     <h2 class='admin-title text-center'>Add Catatan</h2>
     <form action="./add_catatan.php?add" method="post">
       <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
       <div class="mb-3">
-        
+
         <label for="title" class="form-label">Title</label>
         <input type="text" class="form-control" name="title" placeholder="Title" required>
       </div>
       <div class="mb-3">
         <label for="content" class="form-label">Content</label>
-        <textarea class="form-control" name="content" placeholder="Content" style="height: 200px;"
-         required></textarea>
+        <textarea class="form-control" name="content" placeholder="Content" style="height: 200px;" required></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Add</button>
     </form>
   </div>
-  <?php include "../footer.php"
-?>
+  <!-- <?php include "../footer.php"
+        ?> -->
   <!-- Bootstrap JS and Popper.js -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>

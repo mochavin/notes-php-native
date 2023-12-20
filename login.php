@@ -78,8 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="password" class="form-label">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
               </div>
-
-              <button type="submit" class="btn btn-light">Login</button>
+              <!-- button login -->
+              <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <!-- register link -->
             <p class="mt-3">Belum punya akun? <a href="register.php">Register</a></p>

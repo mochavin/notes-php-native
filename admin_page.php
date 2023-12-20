@@ -66,49 +66,59 @@ if (isset($_GET['search'])) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/header.css">
   <style>
-    body {
-      padding: 20px;
-    }
-
     h1 {
       margin-bottom: 20px;
     }
 
-    table {
+    .table-admin {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      padding: 100px;
     }
 
-    table,
-    th,
-    td {
-      border: 2px solid #dee2e6;
+    .table-admin,
+    .table-admin th,
+    .table-admin td {
+      border: 1px solid #dee2e6;
     }
 
-    th,
-    td {
+    .table-admin th,
+    .table-admin td {
       padding: 10px;
       text-align: left;
-    }
-
-    th {
       background-color: #f8f9fa;
     }
 
-    td a {
+    .table-admin th {
+      background-color: #f8f9fa;
+    }
+    
+    .table-admin td a {
       margin-right: 10px;
+    }
+
+    .btn-action {
+      display: flex;
+      gap: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .btn-action {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 
-<body class='light'>
-  
-  <div class="container ">
-   <?php include 'header.php'; ?>
-    <h1 class="admin-title">Admin Page</h1>
+<body class="light">
+  <?php include 'header.php'; ?>
+  <div class="container">
+    <h1>Admin Page</h1>
     <h3>Welcome, <span style="color:red"><?php echo $_SESSION['username']; ?></span> </h3>
-    
     <div class="my-3">
       <form method="GET" action="admin_page.php">
         <div class="input-group">
@@ -116,10 +126,9 @@ if (isset($_GET['search'])) {
           <button type="submit" class="btn btn-primary">Search</button>
         </div>
       </form>
-      
     </div>
 
-    <table class="table">
+    <table class="table-admin">
       <thead>
         <tr>
           <th>Username</th>
@@ -141,13 +150,11 @@ if (isset($_GET['search'])) {
             echo "<td>" . $row['password'] . "</td>";
             // role
             echo "<td" . ($row['role'] == 'admin' ? ' style="font-weight: bold; color: red;"' : '') . ">" . $row['role'] . "</td>";
-             // change role
-             $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
-             echo "<td><a href='admin_page.php?change=" . $row['id_user'] . "&search=" . $searchQuery . "' class='btn btn-primary'>Change Role</a>";
+            // change role
+            $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+            echo "<td class='btn-action'><a href='admin_page.php?change=" . $row['id_user'] . "&search=" . $searchQuery . "' class='btn btn-primary'>Change Role</a>";
             // add row for delete
             echo "<a href='./process/delete_user.php?delete=" . $row['id_user'] . "' class='btn btn-danger'>Delete</a></td>";
-           
-
             echo "</tr>";
           }
         } else {
@@ -158,7 +165,7 @@ if (isset($_GET['search'])) {
     </table>
   </div>
   <?php include "./footer.php"
-?>
+  ?>
 
   <!-- Bootstrap JS and Popper.js -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>

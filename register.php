@@ -60,7 +60,7 @@
                 <input type="password" class="form-control" id="password" name="password" required>
               </div>
 
-              <button type="submit" class="btn btn-light">Register</button>
+              <button type="submit" class="btn btn-primary">Register</button>
             </form>
             <!-- login link -->
             <p class="mt-3">Sudah punya akun? <a href="login.php">Login</a></p>
