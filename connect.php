@@ -2,7 +2,7 @@
 // Database credentials
 $host = "localhost";
 $username = "root";
-$password = "";
+$password = "Ryokeren123";
 $database = "fp_pweb";
 
 // Create a new mysqli object
