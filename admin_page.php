@@ -131,6 +131,9 @@ if (isset($_GET['search'])) {
     <table class="table-admin">
       <thead>
         <tr>
+          <!-- text-center -->
+          <th style="width: 5%; text-align: center; vertical-align: middle;
+          ">No</th>
           <th>Username</th>
           <th>Password</th>
           <th>Role</th>
@@ -142,8 +145,12 @@ if (isset($_GET['search'])) {
         // if the query returned any rows
         if ($result->num_rows > 0) {
           // loop through each row
+          $index = 1;
           while ($row = $result->fetch_assoc()) {
             echo "<tr>";
+            // urutan
+            echo "<td style='text-align: center; vertical-align: middle;'
+            >" . $index++ . "</td>";
             // username
             echo "<td>" . $row['username'] . "</td>";
             // password

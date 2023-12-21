@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = $result->fetch_assoc();
         $id_user = $row['id_user'];
 
-        $note_title = "Welcome to CatatanKu";
-        $note_content = "Selamat datang di CatatanKu, aplikasi catatan sederhana untuk mencatat hal-hal penting dalam hidupmu. Semoga aplikasi ini dapat membantu kamu dalam mengatur hidupmu. Jangan lupa untuk mengatur hidupmu dengan baik ya!";
+        $note_title = "Welcome to Keep Notes";
+        $note_content = "Selamat datang di Keep Notes, aplikasi catatan sederhana untuk mencatat hal-hal penting dalam hidupmu. Semoga aplikasi ini dapat membantu kamu dalam mengatur hidupmu. Jangan lupa untuk mengatur hidupmu dengan baik ya!";
         $sql = "INSERT INTO note (title, content) VALUES ('$note_title', '$note_content')";
         $result = $mysqli->query($sql);
 
